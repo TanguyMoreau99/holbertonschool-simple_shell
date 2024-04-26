@@ -17,34 +17,37 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		line = _getline();
-		if (line == NULL)
+		errno = 0;
+
+		line = _getline();/*read a line of input from the user*/
+		if (line == NULL && errno == 0)
 		{
 			exit(1);
 		}
-			if (line)
-			{
-				pathnumb++;
-				tokens = _strtok(line);
-				if (tokens == NULL)
-					free(line);
-				status = exec(tokens, argv, pathnumb);
-				free(tokens);
+		if (line) /* INput line isn't empty*/
+		{
+			pathnumb++;
+			tokens = _strtok(line);
+			if (tokens == NULL)
 				free(line);
-				if (status == 1)
-				{
-					exit(0);
-				}
-			}
-			else
+			status = exec(tokens, argv, pathnumb);
+			free(tokens);
+			free(line);
+			if (status == 42)
 			{
-				if (isatty(STDIN_FILENO))
-				{
-					write(STDOUT_FILENO, "\n", 1);
-				}
-				exit(status);
+				printf("Exited normally.\n");
+				exit(0);
 			}
-
+		}
+		else /* input line empty*/
+		{
+			if (isatty(STDIN_FILENO)) /* Chech if stdout is a terminal*/
+			{
+				printf("\n");
+			}
+			printf("Exited with status: %d\n", WEXITSTATUS(status));
+			exit(status);
+		}
 	}
 	exit(status);
 }

@@ -24,6 +24,7 @@ int builtin(char **token)
 	{
 		if (strcmp(token[0], builtin_func_list[i]) == 0)
 		{
+			/* return the corresponding built_in function*/
 			return ((*builtin_func[i])(token));
 		}
 	}

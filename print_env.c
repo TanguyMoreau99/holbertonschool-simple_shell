@@ -6,16 +6,19 @@
 */
 int print_env(char **token)
 {
-	size_t i = 0;
+	size_t env_index = 0;
 
-	if (*token)
-	{
-		while (environ[i])
+		if (*token)
 		{
-			write(STDOUT_FILENO, environ[i], strlen(environ[i]));
-			write(STDOUT_FILENO, "\n", 1);
-			i++;
+			while (environ[env_index]) /* print the environment*/
+			{
+				if (printf("%s\n", environ[env_index]) == -1)
+				{
+					perror("Error");
+					return (1);
+				}
+				env_index++;
+			}
 		}
+		return (0);
 	}
-	return (0);
-}

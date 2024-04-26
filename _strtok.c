@@ -6,12 +6,12 @@
  * Return: the pointer args
 */
 
-char **_strtok(char *line)
+char **_strtok(char *line) /* Split the line to arguments*/
 {
 	char *token = NULL;
 	char **args = NULL;
 	int size = 64;
-	int i = 0;
+	int token_index = 0;
 
 	if (line == NULL)
 	{
@@ -22,22 +22,22 @@ char **_strtok(char *line)
 	if (args == NULL)
 		return (NULL);
 
-	token = strtok(line, " \r\t\n");
+	token = strtok(line, " \r\t\n");/*Tokenieze the input line*/
 
 	while (token != NULL)
 	{
-		args[i] = token;
-		i++;
-		if (i >= size)
+		args[token_index] = token; /* store each token in the args array*/
+		token_index++;
+		if (token_index >= size)
 		{
 			size += size;
 			args = realloc(args, size * sizeof(char *));
 			if (args == NULL)
 				return (NULL);
 		}
-		token = strtok(NULL, " \t\r\n");
+		token = strtok(NULL, " \t\r\n");/* Get the next token*/
 	}
 
-	args[i] = NULL;
+	args[token_index] = NULL;
 	return (args);
 }

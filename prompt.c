@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * prompt - Display the prompt
+* prompt - Display the prompt
 */
 void prompt(void)
 {
-	write(STDOUT_FILENO, "$ ", 2);
+	printf("simple shell$");
 }

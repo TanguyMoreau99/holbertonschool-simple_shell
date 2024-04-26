@@ -7,9 +7,6 @@
 
 int exit_function(char **token)
 {
-	if (*token)
-	{
-	exit(0);
-	}
-return (0);
+	(void)token;
+	return (42); /* Signal to exit the simple shell*/
 }
