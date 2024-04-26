@@ -6,7 +6,7 @@ This is a group project. We had to recreate a simplified version of a shell
 
 ## Activity Diagram (UML) : How does it work ?
 
-<img src="1.png" alt= "UML">
+<img src="Flowcharts.png" alt= "UML">
 
 ## LIBRARIES USED & GCC Version
 `stdlib.h` | `stdio.h` | `unistd.h` | `string.h` | `sys/types.h` | `sys/wait.h` | `sys/stat.h` |
